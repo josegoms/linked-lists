@@ -80,4 +80,35 @@ class LinkedList {
         return current.value;
 
     }
+
+    at(index) {
+        //Negative index
+        if (index < 0) return undefined;
+
+        //Placeholder
+        let current = this.head;
+        let count = 0;
+
+        //Loop over till reach index-position value
+        while (current !== null) {
+            if (count === index) return current.value;
+            current = current.nextNode;
+            count++;
+        }
+
+        return undefined;
+    }
+
+    pop() {
+        //Placeholder
+        let current = this.head;
+        
+        //Empty list
+        if (current == null) return undefined;
+
+        //Deattach current head
+        let popped = current.value;
+        this.head = current.nextNode;
+        return popped;
+    }
 }
