@@ -138,4 +138,21 @@ class LinkedList {
 
         return -1;
     }
+
+    toString() {
+        //Reference
+        let current = this.head;
+        let text = "";
+
+        //Empty list
+        if (current === null) return text;
+
+        //Add elements to string
+        while (current !== null) {
+            text += `( ${current.value} ) -> `;
+            current = current.nextNode;
+        }
+
+        return text += "null";
+    }
 }
