@@ -104,12 +104,11 @@ class LinkedList {
         let current = this.head;
         
         //Empty list
-        if (current == null) return undefined;
+        if (current === null) return undefined;
 
         //Deattach current head
-        let popped = current.value;
         this.head = current.nextNode;
-        return popped;
+        return current.value;
     }
 
     contains(value) {
@@ -119,6 +118,7 @@ class LinkedList {
         //Loop over to possibly find the wanted value
         while (current !== null) {
             if (current.value === value) return true;
+            current = current.nextNode;
         }
 
         return false;
@@ -166,9 +166,19 @@ class LinkedList {
 
         //First node
         if (index === 0) {
-            for (v of values) {
-                this.prepend(v);
+            //Change reference
+            let dummy = new Node(values[0]);
+            let chain = dummy;
+
+            for (let i = 1; i < values.length; i++) {
+                let newNode = new Node(values[i]);
+
+                chain.nextNode = newNode;
+                chain = newNode;
             }
+
+            chain.nextNode = current;
+            this.head = dummy;
             return;
         }
 
@@ -176,10 +186,10 @@ class LinkedList {
         for (let i = 0; i < size; i++) {
             if (i + 1 === index) {
                 //Save rest of the list
-                let rest = current.nextNode.nextNode;
+                let rest = current.nextNode;
 
                 //Create all necessary nodes and append
-                for (v of values) {
+                for (let v of values) {
                     let newNode = new Node(v);
 
                     current.nextNode = newNode;
