@@ -42,7 +42,7 @@ class LinkedList {
     }
 
     size() {
-        //Placehold and count
+        //Reference and count
         let current = this.head;
         let count = 0;
 
@@ -56,7 +56,7 @@ class LinkedList {
     }
 
     getHead() {
-        //Placeholder
+        //Reference
         let current = this.head;
 
         //Empty list
@@ -66,7 +66,7 @@ class LinkedList {
     }
 
     tail() {
-        //Placeholder
+        //Reference
         let current = this.head;
 
         //Empty list
@@ -85,7 +85,7 @@ class LinkedList {
         //Negative index
         if (index < 0) return undefined;
 
-        //Placeholder
+        //Reference
         let current = this.head;
         let count = 0;
 
@@ -100,7 +100,7 @@ class LinkedList {
     }
 
     pop() {
-        //Placeholder
+        //Reference
         let current = this.head;
         
         //Empty list
@@ -110,5 +110,32 @@ class LinkedList {
         let popped = current.value;
         this.head = current.nextNode;
         return popped;
+    }
+
+    contains(value) {
+        //Reference
+        let current = this.head;
+
+        //Loop over to possibly find the wanted value
+        while (current !== null) {
+            if (current.value === value) return true;
+        }
+
+        return false;
+    }
+
+    findIndex(value) {
+        //Reference and count
+        let current = this.head;
+        let count = 0;
+
+        //Loop over to possibly find the wanted index
+        while (current !== null) {
+            if (current.value === value) return count;
+            current = current.nextNode;
+            count++;
+        }
+
+        return -1;
     }
 }
