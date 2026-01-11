@@ -155,4 +155,65 @@ class LinkedList {
 
         return text += "null";
     }
+
+    insertAt(index, ...values) {
+        //Reference
+        let current = this.head;
+        let size = this.size();
+
+        //Index check
+        if (index < 0 || index > size) throw RangeError;
+
+        //First node
+        if (index === 0) {
+            for (v of values) {
+                this.prepend(v);
+            }
+            return;
+        }
+
+        //Other nodes
+        for (let i = 0; i < size; i++) {
+            if (i + 1 === index) {
+                //Save rest of the list
+                let rest = current.nextNode.nextNode;
+
+                //Create all necessary nodes and append
+                for (v of values) {
+                    let newNode = new Node(v);
+
+                    current.nextNode = newNode;
+                    current = current.nextNode;
+                }
+
+                //Reappend the rest
+                current.nextNode = rest;
+                return;
+            }
+            current = current.nextNode;
+        }
+    }
+
+    removeAt(index) {
+        //Reference
+        let current = this.head;
+        let size = this.size();
+
+        //Index check
+        if (index < 0 || index > size) throw RangeError;
+
+        //First node
+        if (index === 0) {
+            this.pop();
+            return;
+        }
+        
+        //Find index position
+        for (let i = 0; i < size; i++) {
+            if (i + 1 === index) {
+                current.nextNode = current.nextNode.nextNode;
+            }
+            current = current.nextNode;
+        }
+    }
 }
