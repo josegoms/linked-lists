@@ -54,4 +54,30 @@ class LinkedList {
 
         return count;
     }
+
+    getHead() {
+        //Placeholder
+        let current = this.head;
+
+        //Empty list
+        if (current === null) return undefined;
+
+        return current.value;
+    }
+
+    tail() {
+        //Placeholder
+        let current = this.head;
+
+        //Empty list
+        if (current === null) return undefined;
+
+        //Loop over to reach tail
+        while (current.nextNode !== null) {
+            current = current.nextNode;
+        }
+
+        return current.value;
+
+    }
 }
