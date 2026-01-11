@@ -1,5 +1,6 @@
 class Node {
     constructor(value) {
+        //Node composition
         this.value = value;
         this.nextNode = null;
     }
@@ -7,22 +8,50 @@ class Node {
 
 class LinkedList {
     constructor() {
+        //Linked List head
         this.head = null;
     }
 
     append(value) {
+        //Create new node
         let newNode = new Node(value);
 
+        //Empty list
         if (this.head === null) {
             this.head = newNode;
             return;
         }
 
+        //loop over the list to reach the tail
         let current = this.head;
         while (current.nextNode !== null) {
             current = current.nextNode;
         }
 
+        //Append new node
         current.nextNode = newNode;
+    }
+
+    prepend(value) {
+        //Create new node
+        const newNode = new Node(value);
+
+        //Rearrange list's head
+        newNode.nextNode = this.head;
+        this.head = newNode;
+    }
+
+    size() {
+        //Placehold and count
+        let current = this.head;
+        let count = 0;
+
+        //Loop over to reach tail + count
+        while(current !== null) {
+            current = current.nextNode;
+            count++;
+        }
+
+        return count;
     }
 }
